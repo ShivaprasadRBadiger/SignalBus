@@ -1,0 +1,23 @@
+{
+  "name": "com.srb.signalbus",
+  "version": "1.0.0",
+  "displayName": "SignalBus",
+  "description": "A lightweigh subscriber publisher framework in c#",
+  "main": "Assets/Packages/com.srb.signalbus/Runtime/SignalBus.cs",
+  "unity": "2021.3",
+  "author": {
+    "name": "Shivaprasad R Badiger",
+    "email": "shivaprasadrbadiger@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShivaprasadRBadiger/SignalBus.git"
+  },
+  "keywords": [
+    "observer pattern",
+    "publisher subscriber"
+    "C#",
+    "Unity"
+  ],
+  "license": "MIT"
+}
