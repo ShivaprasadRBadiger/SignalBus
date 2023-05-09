@@ -29,8 +29,12 @@ To receive and handle signals, components need to register themselves as signal 
 
 ```cs
 
-public class MySignalHandler : ISignalHandler<MySignal>
+public class MySignalHandler
 {
+    public MySignalHandler(SignalBus signalBus)
+    {
+       signalBus.Register<MySignal>(HandleSignal);
+    }
     public void HandleSignal(MySignal signal)
     {
         // Handle the signal here
@@ -38,8 +42,7 @@ public class MySignalHandler : ISignalHandler<MySignal>
     }
 }
 
-// Register the signal handler
-SignalBus.Register<MySignal>(new MySignalHandler()); 
+
 ```
 ### Sending Signals
 
@@ -49,7 +52,7 @@ To send a signal and notify all registered signal handlers, you can use the `Sen
 var signal = new MySignal { Id = 123, Message = "Hello, World!" };
 
 // Send the signal to all registered signal handlers
-SignalBus.Send(signal);
+SignalBus.Fire(signal);
 ```
 ### Unregistering Signal Handlers
 
@@ -58,7 +61,7 @@ If a component no longer wants to receive signals, it can unregister itself as a
 ```cs
 
 // Unregister the signal handler
-SignalBus.Unregister<MySignal>(mySignalHandler); 
+SignalBus.Unregister<MySignal>(HandleSignal); 
 ```
 ## Performance Considerations
 
