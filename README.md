@@ -16,21 +16,20 @@ SignalBus is a lightweight C# class that provides a simple mechanism for decoupl
 
 To use the `SignalBus`, you need to define a signal struct that serves as the identifier and carrier of the signal. For example:
 
-csharpCopy code
-
-`public struct MySignal
+```cs
+public struct MySignal
 {
     public int Id;
     public string Message;
-}` 
-
+}
+```
 ### Registering Signal Handlers
 
 To receive and handle signals, components need to register themselves as signal handlers using the `Register` method. For example:
 
-csharpCopy code
+```cs
 
-`public class MySignalHandler : ISignalHandler<MySignal>
+public class MySignalHandler : ISignalHandler<MySignal>
 {
     public void HandleSignal(MySignal signal)
     {
@@ -40,28 +39,27 @@ csharpCopy code
 }
 
 // Register the signal handler
-SignalBus.Register<MySignal>(new MySignalHandler());` 
-
+SignalBus.Register<MySignal>(new MySignalHandler()); 
+```
 ### Sending Signals
 
 To send a signal and notify all registered signal handlers, you can use the `Send` method. For example:
 
-csharpCopy code
-
-`var signal = new MySignal { Id = 123, Message = "Hello, World!" };
+```cs
+var signal = new MySignal { Id = 123, Message = "Hello, World!" };
 
 // Send the signal to all registered signal handlers
-SignalBus.Send(signal);` 
-
+SignalBus.Send(signal);
+```
 ### Unregistering Signal Handlers
 
 If a component no longer wants to receive signals, it can unregister itself as a signal handler using the `Unregister` method. For example:
 
-csharpCopy code
+```cs
 
-`// Unregister the signal handler
-SignalBus.Unregister<MySignal>(mySignalHandler);` 
-
+// Unregister the signal handler
+SignalBus.Unregister<MySignal>(mySignalHandler); 
+```
 ## Performance Considerations
 
 The `SignalBus` class provides a basic implementation for handling signals and communicating between components. However, it's important to note that the performance of the `SignalBus` can be impacted by the number of registered signal handlers and the frequency of signal dispatches.
